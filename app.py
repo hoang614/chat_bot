@@ -184,4 +184,4 @@ button:hover {
         send_btn.click(respond, [txt, chatbot, pdf_upload], [txt, chatbot])
         upload_btn.click(toggle_pdf_upload, pdf_visible_state, [pdf_upload, pdf_visible_state])
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=8080)
+    demo.launch()
