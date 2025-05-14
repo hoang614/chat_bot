@@ -50,7 +50,7 @@ def chat_with_bot(message, history, pdf_text=None):
         if urls:
             url = urls[0]
             article = get_article_content(url)
-            user_message = f"Tóm tắt nội dung bài báo sau:\n\n{article}"
+            user_message = f"Tóm tắt nội dung sau:\n\n{article}"
         elif pdf_text and message.strip(): 
             memory_context.append(["Nội dung PDF", pdf_text]) 
             user_message = message
@@ -160,7 +160,6 @@ button:hover {
         visible=False
         )
 
-        # Trạng thái lưu trạng thái ẩn/hiện của upload
         pdf_visible_state = gr.State(False)
 
         def toggle_pdf_upload(visible):
