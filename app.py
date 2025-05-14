@@ -47,10 +47,16 @@ def chat_with_bot(message, history, pdf_text=None):
         url_pattern = re.compile(r'https?://\S+')
         urls = url_pattern.findall(message)
         memory_context = []
-        if urls:
+        if urls and message.strip():
             url = urls[0]
             article = get_article_content(url)
-            user_message = f"Tóm tắt nội dung sau:\n\n{article}"
+            memory_context.append(["Nội dung bài viết", article])
+            user_message = message
+        elif urls and not message.strip():
+            url = urls[0]
+            article = get_article_content(url)
+            memory_context.append(["Nội dung bài viết", article])
+            user_message = f"Tóm tắt nội dung bài viết:\n\n{article}"
         elif pdf_text and message.strip(): 
             memory_context.append(["Nội dung PDF", pdf_text]) 
             user_message = message
@@ -107,6 +113,7 @@ textarea {
     resize: vertical !important;
     overflow-y: auto;
     background-color: white !important;
+    color: black !important;
 }
 button {
     background-color: #CCCCCC !important;
